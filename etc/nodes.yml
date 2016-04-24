@@ -1,0 +1,6 @@
+---
+nodes:
+  node-11:
+    role: slave
+    mac: B8:27:EB:32:27:9B
+    ip: 192.168.17.11
