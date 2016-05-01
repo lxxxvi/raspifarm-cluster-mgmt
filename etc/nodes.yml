@@ -4,3 +4,31 @@ nodes:
     role: slave
     mac: B8:27:EB:32:27:9B
     ip: 192.168.17.11
+  node-12:
+    role: slave
+    mac:
+    ip: 192.168.17.12
+  node-13:
+    role: slave
+    mac:
+    ip: 192.168.17.13
+  node-14:
+    role: slave
+    mac:
+    ip: 192.168.17.14
+  node-15:
+    role: slave
+    mac:
+    ip: 192.168.17.15
+  node-16:
+    role: slave
+    mac:
+    ip: 192.168.17.16
+  node-17:
+    role: slave
+    mac:
+    ip: 192.168.17.17
+  node-18:
+    role: slave
+    mac:
+    ip: 192.168.17.18
