@@ -8,7 +8,7 @@ module ClusterManager
     FIRST_NODE_NUMBER = 11
 
     def initialize
-      base_dir = Pathname.new(File.expand_path File.dirname(__FILE__)).parent
+      base_dir = Pathname.new(File.expand_path File.dirname(__FILE__)).parent.parent
       @nodes_path = Pathname.new("#{base_dir}/etc/#{NODES_YML}")
       @nodes = YAML.load_file(nodes_path)['nodes']
     end
