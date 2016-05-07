@@ -1,30 +1,34 @@
 require 'pathname'
 base_path = Pathname.new(File.expand_path File.dirname(__FILE__)).parent
 
-Dir.glob('lib/*/**').each { |lib| load "#{base_path}/#{lib}"}
+load '/home/farmer/cluster/lib/cluster.rb'
+load '/home/farmer/cluster/lib/cluster/node.rb'
+Dir.glob("/home/farmer/cluster/lib/**/*.rb").each { |file| require file }
 
-valid_commands = %w[list discover run ping help]
+nodes_config_path = base_path.join('etc', 'nodes.yml')
 
-command = ARGV[0]
+cluster = RaspiFarm::Cluster.new(nodes_config_path.to_s)
 
-raise "Command #{command} is not known." if !valid_commands.include?(command)
+command = ARGV.shift
 
 case command
-when 'list' then ClusterManager::NodeLister.new.call
-when 'run'  then ClusterManager::NodeRunner.new(targets: ARGV[1], cmd: ARGV[2]).call
-when 'ping' then ClusterManager::NodePinger.new.call
+#when 'list'   then ClusterManager::NodeLister.new.call
+#when 'run'    then ClusterManager::NodeRunner.new(targets: ARGV[1], cmd: ARGV[2]).call
+when 'status' then cluster.status
+when 'run'    then cluster.run(ARGV)
 else
-  puts <<EOF 
 
-  raspi.farm cluster manager  
+  puts "  ERROR: command '#{command}' is not known" unless command == 'help'
+
+  puts <<EOF
+
+  raspi.farm cluster manager
 
   Available commands
 
-  cluster       list          not implemented yet (list available/configured nodes)
-                run           run commands on all or specific nodes (partially implemented)
-                discover      not implemented yet (discover Raspberry Pi noded in DHCP range)
-                ping          ping all configured nodes
-                help          display help
+  cluster         help          display help
+                  run           run commands on enabled slaves
+                  status        display status of configured nodes
 
 EOF
 end

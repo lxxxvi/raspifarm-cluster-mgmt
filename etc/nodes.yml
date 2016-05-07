@@ -1,34 +1,47 @@
 ---
 nodes:
+  node-1:
+    role: master
+    mac:
+    ip: 192.168.17.1
+    enabled: false
   node-11:
     role: slave
     mac: B8:27:EB:32:27:9B
     ip: 192.168.17.11
+    enabled: false
   node-12:
     role: slave
     mac:
     ip: 192.168.17.12
+    enabled: false
   node-13:
     role: slave
     mac:
     ip: 192.168.17.13
+    enabled: false
   node-14:
     role: slave
     mac:
     ip: 192.168.17.14
+    enabled: false
   node-15:
     role: slave
     mac:
     ip: 192.168.17.15
+    enabled: true
   node-16:
     role: slave
     mac:
     ip: 192.168.17.16
+    enabled: true
   node-17:
     role: slave
     mac:
     ip: 192.168.17.17
+    enabled: true
   node-18:
     role: slave
     mac:
     ip: 192.168.17.18
+    enabled: true
