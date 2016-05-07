@@ -1,3 +1,5 @@
+require 'yaml'
+
 module RaspiFarm
   class Cluster
 
@@ -31,7 +33,7 @@ module RaspiFarm
     private
 
     def load_nodes
-      @all_nodes = YAML.load_file(@nodes_file_path)['nodes']
+      @all_nodes = ::YAML.load_file(nodes_file_path)['nodes']
     end
 
   end

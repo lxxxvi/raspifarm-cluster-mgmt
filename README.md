@@ -9,22 +9,28 @@ export PATH=$PATH:/home/farmer/cluster/bin
 
 It's recommended that you put this into your `~/.profile` or `~/.bash_profile` file.
 
+### Configuration
 
-## Pinger
+Configure your nodes in `etc/nodes.yml`
 
-Use `cluster ping` to check if configured slave-nodes are up:
+## Status
 
 ```shell
-
-farmer@raspifarm-master:~/cluster $ cluster ping
-192.168.17.11 is NOT alive
-192.168.17.12 is NOT alive
-192.168.17.13 is NOT alive
-192.168.17.14 is NOT alive
-192.168.17.15 is alive
-192.168.17.16 is alive
-192.168.17.17 is alive
-192.168.17.18 is alive
-
+farmer@raspifarm-master:~ $ cluster status
+Status of configured nodes (see /home/farmer/cluster/etc/nodes.yml)
+192.168.17.15 is alive, login possible
+192.168.17.16 is alive, login possible
+192.168.17.17 is alive, login possible
+192.168.17.18 is alive, login possible
 ```
 
+
+## Runner
+
+```shell
+farmer@raspifarm-master:~ $ cluster run all 'hostname'
+raspifarm-slave-15
+raspifarm-slave-16
+raspifarm-slave-17
+raspifarm-slave-18
+```
