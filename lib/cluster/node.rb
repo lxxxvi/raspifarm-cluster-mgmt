@@ -24,6 +24,10 @@ module RaspiFarm
       system("ssh farmer@#{ip_address} #{escape(cmd)}")
     end
 
+    def remote_backticks(cmd)
+      `ssh farmer@#{ip_address} "#{escape(cmd)}"`
+    end
+
     def escape(cmd)
       cmd.gsub(/"/, "\\\"")
     end
