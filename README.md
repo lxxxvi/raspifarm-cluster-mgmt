@@ -8,6 +8,8 @@ Simply clone it onto your RaspiFarm Cluster master node:
 git clone git@github.com:lxxxvi/raspifarm-cluster-mgmt.git
 ```
 
+---
+
 ## Configuration
 
 ### Cluster command
@@ -35,21 +37,23 @@ Configure your nodes in `etc/nodes.yml`
 
 ```
 
+---
+
 ## Services
 
 ### Status
 
-#### Description
+##### Description
 
 Checks if the configured nodes/hosts can be pinged and if login with `farmer` user is possible.
 
-#### Usage
+##### Usage
 
 `cluster status <targets>`
 
 This service does not take arguments.
 
-#### Example
+##### Example
 
 ```shell
 farmer@raspifarm-master:~ $ cluster status all
@@ -61,17 +65,17 @@ farmer@raspifarm-master:~ $ cluster status all
 
 ### Runner
 
-#### Description
+##### Description
 
 Runs a command on given (<targets>) hosts.
 
-#### Usage
+##### Usage
 
 `cluster run <targets> "<command>"`
 
 Make sure you wrap the command in double quotes.
 
-#### Example
+##### Example
 
 ```shell
 farmer@raspifarm-master:~ $ cluster run all "hostname"
@@ -83,17 +87,17 @@ raspifarm-slave-18
 
 ### Statistics
 
-#### Description
+##### Description
 
 Displays statistics (CPU and memory usage) of given hosts (<targets>).
 
-#### Usage
+##### Usage
 
 `cluster stats <targets>`
 
 This service does not take arguments.
 
-#### Example
+##### Example
 
 ```shell
 farmer@raspifarm-master:~ $ cluster stats all
