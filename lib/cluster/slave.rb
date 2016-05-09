@@ -12,7 +12,7 @@ module RaspiFarm
     end
 
     def stats
-      cpu_cmd = "top -bn2 -d 0.01 | grep '^%Cpu' | tail -n 1"
+      cpu_cmd = "top -bn2 -d 0.2 | grep '^%Cpu' | tail -1"
       mem_cmd = "top -bn1 | grep '^KiB Mem'"
       result = remote_backticks([cpu_cmd, mem_cmd].join(';'))
       analyze(result)
