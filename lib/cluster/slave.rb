@@ -32,8 +32,8 @@ module RaspiFarm
 
     def calculate_cpu_usage(string)
       # Example string:  "%Cpu(s): 16.7 us,  0.0 sy,  0.0 ni, 83.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st"
-      #                            ----      ---      ---
-      string.split(' ').values_at(1, 3, 5).map(&:to_f).inject(0.0) { |sum, n| sum += n }
+      #                                                       -[7]-
+      (100.0 - string.split(' ')[7].to_f).round(2)
     end
 
     def calculate_memory_usage(string)
