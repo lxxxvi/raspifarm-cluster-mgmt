@@ -25,7 +25,9 @@ module RaspiFarm
     end
 
     def remote_backticks(cmd)
-      `ssh farmer@#{ip_address} "#{escape(cmd)}"`
+      result = `ssh farmer@#{ip_address} "#{escape(cmd)}"`
+      raise "Command '#{cmd}' failed to execute on host #{ip_address}" unless $?.exitstatus == 0
+      result
     end
 
     def escape(cmd)

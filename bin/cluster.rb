@@ -1,6 +1,7 @@
 require 'pathname'
 base_path = Pathname.new(File.expand_path File.dirname(__FILE__)).parent
 
+# TODO: improve loads
 load '/home/farmer/cluster/lib/cluster.rb'
 load '/home/farmer/cluster/lib/cluster/node.rb'
 Dir.glob("/home/farmer/cluster/lib/**/*.rb").each { |file| require file }
