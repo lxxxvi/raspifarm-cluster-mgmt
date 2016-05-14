@@ -63,6 +63,27 @@ farmer@raspifarm-master:~ $ cluster status all
 192.168.17.18 is alive, login possible
 ```
 
+### Installer
+
+##### Description
+
+Installs package(s) on given (<targets>) hosts using `apt-get -y install`.
+
+##### Usage
+
+`cluster install <targets> "<package(s)>"`
+
+Make sure you wrap the package(s) in double quotes. Separate packages with spaces (as you would do it for the apt-get install command).
+Note, that cluster install always executes `sudo apt-get update` before installing the provided package(s).
+
+##### Example
+
+```shell
+farmer@raspifarm-master:~ $ cluster install 12,13,16 "package-one package-two"
+# lots of output goes here
+```
+
+
 ### Runner
 
 ##### Description

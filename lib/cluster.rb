@@ -40,6 +40,10 @@ module RaspiFarm
       Cluster::StatService
     end
 
+    def install
+      Cluster::InstallerService
+    end
+
     private
 
     def execute(service)
@@ -63,6 +67,7 @@ module RaspiFarm
       Available services
 
       cluster help          display this help
+              install       install package(s) on enabled slaves
               run           run commands on enabled slaves
               stats         display statistics of configured nodes
               status        display status of configured nodes

@@ -21,7 +21,10 @@ module RaspiFarm
 
     private
     def remote_execute(cmd)
-      system("ssh farmer@#{ip_address} #{escape(cmd)}")
+      cmd = "ssh farmer@#{ip_address} \"#{escape(cmd)}\""
+      puts "# Running '#{cmd}'"
+      system(cmd)
+      puts "\n" * 2
     end
 
     def remote_backticks(cmd)
