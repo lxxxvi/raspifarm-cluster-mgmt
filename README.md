@@ -74,7 +74,7 @@ Installs package(s) on given (<targets>) hosts using `apt-get -y install`.
 `cluster install <targets> "<package(s)>"`
 
 Make sure you wrap the package(s) in double quotes. Separate packages with spaces (as you would do it for the apt-get install command).
-Note, that cluster install always executes `sudo apt-get update` before installing the provided package(s).
+Note, that the installer will always execute `sudo apt-get update` before installing the provided package(s).
 
 ##### Example
 
