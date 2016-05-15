@@ -14,9 +14,12 @@ module RaspiFarm
     def stats
       cpu_cmd = "top -bn2 -d 0.2 | grep '^%Cpu' | tail -1"
       mem_cmd = "top -bn1 | grep '^KiB Mem'"
-      result = remote_backticks([cpu_cmd, mem_cmd].join(';'))
-      analyze(result)
-      to_json
+      result = remote_backticks([cpu_cmd, mem_cmd].join(';'), false)
+
+      if result.success?
+        analyze(result.output)
+        to_json
+      end
     end
 
     def to_json

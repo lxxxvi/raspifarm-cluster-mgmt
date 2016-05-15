@@ -67,7 +67,7 @@ farmer@raspifarm-master:~ $ cluster status all
 
 ##### Description
 
-Installs package(s) on given (<targets>) hosts using `apt-get -y install`.
+Installs package(s) on given (`<targets>`) hosts using `apt-get -y install`.
 
 ##### Usage
 
@@ -88,7 +88,7 @@ farmer@raspifarm-master:~ $ cluster install 12,13,16 "package-one package-two"
 
 ##### Description
 
-Runs a command on given (<targets>) hosts.
+Runs a command on given (`<targets>`) hosts.
 
 ##### Usage
 
@@ -110,7 +110,7 @@ raspifarm-slave-18
 
 ##### Description
 
-Displays statistics (CPU and memory usage) of given hosts (<targets>).
+Displays statistics (CPU and memory usage) of given hosts (`<targets>`).
 
 ##### Usage
 

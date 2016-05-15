@@ -1,5 +1,6 @@
 module RaspiFarm
   class Cluster::Node
+    Result ||= Struct.new(:output, :success?)
 
     attr_reader :ip_address, :number
 
@@ -16,25 +17,40 @@ module RaspiFarm
     end
 
     def can_login?
-      remote_execute("echo '' > /dev/null 2>&1")
+      echo = "echo '' > /dev/null 2>&1"
+      system(ssh_command(echo))
     end
 
     private
-    def remote_execute(cmd)
-      cmd = "ssh farmer@#{ip_address} \"#{escape(cmd)}\""
-      puts "# Running '#{cmd}'"
-      system(cmd)
-      puts "\n" * 2
+    def remote_execute(cmd, verbose = true)
+      run(cmd, :system, verbose)
     end
 
-    def remote_backticks(cmd)
-      result = `ssh farmer@#{ip_address} "#{escape(cmd)}"`
-      raise "Command '#{cmd}' failed to execute on host #{ip_address}" unless $?.exitstatus == 0
-      result
+    def remote_backticks(cmd, verbose = true)
+      run(cmd, :backticks, verbose)
+    end
+
+    def run(cmd, method, verbose)
+      puts "# Running '#{ssh_command(cmd)}'" if verbose
+      return Result.new(nil, false) unless can_login?
+
+      result = case method
+               when :system
+                 Result.new(nil, system(ssh_command(cmd)))
+               when :backticks
+                 output = `#{ssh_command(cmd)}`
+                 Result.new(output, $?.exitstatus == 0)
+               else
+                 raise "Command method '#{method}' is unknown"
+               end
     end
 
     def escape(cmd)
       cmd.gsub(/"/, "\\\"")
+    end
+
+    def ssh_command(cmd)
+      "ssh farmer@#{ip_address} \"#{escape(cmd)}\""
     end
 
   end
