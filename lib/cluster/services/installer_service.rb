@@ -11,7 +11,9 @@ module RaspiFarm
 
     def call
       return Cluster::InstallerService.help unless packages_valid?
-      slaves.each { |on_slave| on_slave.execute(command) }
+      threads = []
+      slaves.each { |on_slave| threads << Thread.new { on_slave.execute(command) } }
+      threads.each { |thr| thr.join }
     end
 
     def self.help
